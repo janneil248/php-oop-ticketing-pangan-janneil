@@ -61,7 +61,7 @@
                                             id="exampleRepeatPassword" placeholder="Repeat Password" name="passwordvalidation" required>
                                     </div>
                                 </div>
-                                <button type="submit" name="create_user2" value="create_user2" class="fw-500 btn btn-primary col">Register Account</button>
+                                <button type="submit" name="create_user" value="create_user" class="fw-500 btn btn-primary col">Register Account</button>
                                     
                                 </a>
                             </form>

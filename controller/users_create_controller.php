@@ -5,7 +5,7 @@ require_once("../model/query_class.php");
 class UserController
 {
 
-    public function create_user()
+    public function admin_create_user()
     {   
         $query = new Query;
         $ok = true;
@@ -18,7 +18,7 @@ class UserController
         if (!isset($_POST["department"]) || $_POST["department"] === '') {
             $ok = false;
         } else {
-            $query->department = implode(" ", $_POST["department"]);
+            $query->department = $_POST["department"];
         }
 
         if (!isset($_POST["firstname"]) || $_POST["firstname"] === '') {
@@ -72,12 +72,14 @@ class UserController
         }
 
         if ($ok) {
-            $query->create_user();
+            $query->admin_create_user();
+        //   print_r($_POST["department"]);
+        //   exit;
         }
     }
 
 
-    public function create_user2()
+    public function create_user()
     {   
         $query = new Query;
         $ok = true;
@@ -125,7 +127,7 @@ class UserController
 
         if ($ok) {
 
-            $query->create_user2();
+            $query->create_user();
         }
     }
 }

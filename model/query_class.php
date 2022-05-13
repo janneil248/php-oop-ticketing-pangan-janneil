@@ -6,7 +6,7 @@ class Query
 {
 
     public $role = "";
-    public $department = "";
+    public $department =[];
     public $firstname = "";
     public $lastname = "";
     public $email = "";
@@ -33,15 +33,21 @@ class Query
     }
  
 
-    public function create_user()
+    public function admin_create_user()
     {
-        $data = [$this->firstname,$this->lastname,$this->email,$this->hashpass,$this->role,$this->department];
-        $query = "INSERT INTO `users`(`first_name`, `last_name`, `email`, `password`, `role`, `department`) VALUES (?,?,?,?,?,?)";
+        $data = [$this->firstname,$this->lastname,$this->email,$this->hashpass,$this->role];
+        $query = "INSERT INTO `users`(`first_name`, `last_name`, `email`, `password`, `role_id`) VALUES (?,?,?,?,?)";
         $new_id = $this->db->insert($query,$data);
-        return $new_id;
+        // return $new_id;
+        for ( $i = 0; $i < count($this->department); $i++){
+            $data = [$new_id,$this->department[$i]];
+            $query = "INSERT INTO `users_groups`(`user_id`, `group_id`) VALUES (?,?)";
+            $this->db->insert($query,$data);
+        }
+       
     }
 
-    public function create_user2()
+    public function create_user()
     {
         $data = [$this->firstname,$this->lastname,$this->email,$this->hashpass];
         $query = "INSERT INTO `users`(`first_name`, `last_name`, `email`, `password`) VALUES (?,?,?,?)";

@@ -392,10 +392,7 @@ $result = $query->selectUsers();
                                         </tr>
                                     </thead>
                                     <tbody>
-                            
-    
-
-                                   
+                                <?php foreach($result as $row) { ?>
                                         <tr>
                                             <td><?= $row["first_name"]; ?></td>
                                             <td><?= $row["email"]; ?></td>
@@ -408,6 +405,7 @@ $result = $query->selectUsers();
                                                 <span class="badge badge-warning">Housekeeping</span>
                                             </td>
                                             <td><span class="badge bg-success text-dark">Active</span></td>
+                                        <?php } ?>
                                         </tr>
                                         <tr>
                                             <td>Arley Licup</td>

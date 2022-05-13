@@ -42,7 +42,14 @@ class db
     {
         $this->connect();
         $sql = $this->con->prepare($query);
-        $sql->execute($data);
+        $result = $sql->execute($data);
+
+        $newId = null;
+        if ($result) {
+            $newId = $this->con->lastInsertId();
+        }
+
+        return $newId;
     }
 
  

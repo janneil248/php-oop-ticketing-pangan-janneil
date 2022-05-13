@@ -6,13 +6,14 @@ $loginController = new LoginController;
 
 
 
-if (isset($_POST["create_user"]) == "create_user") {
-    $userController->create_user();
+if (isset($_POST["admin_create_user"]) == "admin_create_user") {
+    $userController->admin_create_user();
+    // var_dump($test);
     header("location: ../view/users.php");
 }
 
-if (isset($_POST["create_user2"]) == "create_user2") {
-    $userController->create_user2();
+if (isset($_POST["create_user"]) == "create_user") {
+    $userController->create_user();
     header("location: ../view/index.php");
 }
 

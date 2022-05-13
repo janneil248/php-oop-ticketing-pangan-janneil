@@ -6,7 +6,7 @@ require_once("../html/header.html")
 ?>
 
                 <!-- Begin Page Content -->
-                <form action="controller/controller.php" method="post">
+                <form action="../controller/controller.php" method="post">
                     <div class="container-fluid">
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -19,8 +19,8 @@ require_once("../html/header.html")
                                     <div class="card-header">Role</div>
                                     <div class="card-body">
                                         <select class="form-control" name="role">
-                                            <option value="User">User</option>
-                                            <option value="Admin">Admin</option>
+                                            <option value="2">User</option>
+                                            <option value="1">Admin</option>
                                         </select>
                                     </div>
                                 </div>
@@ -28,23 +28,23 @@ require_once("../html/header.html")
                                     <div class="card-header">Department</div>
                                     <div class="card-body">
                                         <div class="form-check form-check-solid">
-                                            <input class="form-check-input" id="flexCheckSolidDefault" type="checkbox"  name="department[]" value="HR">
+                                            <input class="form-check-input" id="flexCheckSolidDefault" type="checkbox"  name="department[]" value="1">
                                             <label class="form-check-label" for="flexCheckSolidDefault">HR</label>
                                         </div>
                                         <div class="form-check form-check-solid">
-                                            <input class="form-check-input" id="flexCheckSolidChecked" type="checkbox" name="department[]" value ="IT">
+                                            <input class="form-check-input" id="flexCheckSolidChecked" type="checkbox" name="department[]" value ="2">
                                             <label class="form-check-label" for="flexCheckSolidChecked">IT</label>
                                         </div>
                                         <div class="form-check form-check-solid">
-                                            <input class="form-check-input" id="flexCheckSolidDefault" type="checkbox"  name="department[]" value="Marketing">
+                                            <input class="form-check-input" id="flexCheckSolidDefault" type="checkbox"  name="department[]" value="3">
                                             <label class="form-check-label" for="flexCheckSolidDefault">Marketing</label>
                                         </div>
                                         <div class="form-check form-check-solid">
-                                            <input class="form-check-input" id="flexCheckSolidChecked" type="checkbox"  name="department[]" value="Maintenance">
+                                            <input class="form-check-input" id="flexCheckSolidChecked" type="checkbox"  name="department[]" value="4">
                                             <label class="form-check-label" for="flexCheckSolidChecked">Maintenance</label>
                                         </div>
                                         <div class="form-check form-check-solid">
-                                            <input class="form-check-input" id="flexCheckSolidChecked" type="checkbox" name="department[]" value="Housekeeping">
+                                            <input class="form-check-input" id="flexCheckSolidChecked" type="checkbox" name="department[]" value="5">
                                             <label class="form-check-label" for="flexCheckSolidChecked">Housekeeping</label>
                                         </div>
                                     </div>
@@ -94,7 +94,7 @@ require_once("../html/header.html")
                                     <div class="card-header">Actions</div>
                                     <div class="card-body">
                                         <div class="d-grid">
-                                            <button type="submit" name="create_user" value="create_user" class="fw-500 btn btn-primary col">Create User</button>
+                                            <button type="submit" name="admin_create_user" value="admin_create_user" class="fw-500 btn btn-primary col">Create User</button>
                                         </div>
                                     </div>
                                 </div>
