@@ -1,3 +1,11 @@
+<?php
+require_once("../model/query_class.php");
+$query = new Query;
+$result = $query->selectUsers();
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,16 +20,16 @@
     <title>SB Admin 2 - Tickets</title>
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -365,7 +373,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Users</h1>
-                        <a href="users_create.html" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Create New User</a>
+                        <a href="users_create.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Create New User</a>
                     </div>
 
                     <div class="card mb-4">
@@ -384,12 +392,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                            
+    
+
+                                   
                                         <tr>
-                                            <td>Ellaine Bongbong</td>
-                                            <td>ellaine@gmail.com</td>
+                                            <td><?= $row["first_name"]; ?></td>
+                                            <td><?= $row["email"]; ?></td>
                                             <td>User</td>
                                             <td>
-                                                <span class="badge badge-primary">HR</span>
+                                                <!-- <span class="badge badge-primary">HR</span> -->
                                                 <span class="badge badge-secondary">Marketing</span>
                                                 <span class="badge badge-success">IT</span>
                                                 <span class="badge badge-danger">Maintenance</span>
