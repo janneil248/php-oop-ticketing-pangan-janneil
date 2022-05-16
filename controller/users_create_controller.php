@@ -1,6 +1,7 @@
 <?php
 require_once("../includes/functions.php");
 require_once("../model/query_class.php");
+require_once("login_controller.php");
 
 Opera::sessionStart();
 
@@ -125,7 +126,9 @@ class UserController
         }
 
         if ($ok) {
-            $query->create_user();
+            $new_id = $query->create_user();
+            $logincon = new LoginController;
+            $logincon->Autologin($new_id);
         }
     }
 }

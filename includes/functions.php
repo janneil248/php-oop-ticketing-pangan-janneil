@@ -1,6 +1,7 @@
 <?php
 require_once("../model/query_class.php");
 require_once("../model/ticket_class.php");
+require_once("../controller/login_controller.php");
 
 class Opera
 {
@@ -8,6 +9,13 @@ class Opera
     public static function sessionStart(){
         if(!isset($_SESSION)){
             session_start();
+        }
+    }
+
+    public static function sessionContinue(){
+        if(isset($_SESSION["email"])){
+            session_start();
+            header("location: ../view/index.php");
         }
     }
 
@@ -31,6 +39,8 @@ class Opera
             return $ticketquery->selectTickets($user_id);
         }
     }
+
+  
 
 
     public static function roleAssign($role_id)

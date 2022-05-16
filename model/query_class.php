@@ -26,6 +26,13 @@ class Query
         return $list;
     }
 
+    public function checkAutologin($user_id)
+    {
+        $query = "SELECT * FROM `users` WHERE `user_id` = '$user_id'";
+        $list = $this->db->select($query);
+        return $list;
+    }
+
     public function selectUsers()
     {
         $query = "SELECT * FROM `users`";

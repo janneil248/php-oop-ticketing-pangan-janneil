@@ -30,7 +30,25 @@ class LoginController
         }
     }
 
-    
+    public function Autologin($new_id)
+    {
+        Opera::sessionStart();
+        $query = new Query;
+
+        $result = $query->checkAutologin($new_id);
+        $row = $result->fetch(PDO::FETCH_OBJ);
+
+        if ($result != null) {
+            $_SESSION['user_id'] = $row->user_id;
+            $_SESSION['email'] = $row->email;
+            $_SESSION['role'] = Opera::roleAssign($row->role_id);
+            header("location: ../view/index.php");
+        } else {
+            header("location: ../view/login.php");
+        }
+    }
+
+
     public function logout()
     {
         Opera::sessionStart();
