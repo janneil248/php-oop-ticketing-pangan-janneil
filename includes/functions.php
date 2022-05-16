@@ -1,5 +1,6 @@
 <?php
 require_once("../model/query_class.php");
+require_once("../model/ticket_class.php");
 
 class Opera
 {
@@ -20,6 +21,15 @@ class Opera
         if($_SESSION["role"] != "Admin"){
             header("location: ../view/index.php");
         } 
+    }
+
+    public static function showTickets($user_id){
+        $ticketquery = new TicketQuery;
+        if($_SESSION["role"] == "Admin"){
+            return $ticketquery->selectAllTickets();
+        } else {
+            return $ticketquery->selectTickets($user_id);
+        }
     }
 
 
@@ -46,6 +56,23 @@ class Opera
             return '<span class="badge badge-danger">Maintenance</span>';
         } elseif ($group_id == 5) {
             return '<span class="badge badge-warning">Housekeeping</span>';
+        } else {
+            return "N/A";
+        }
+    }
+
+    public static function getTicketStatus($status)
+    {
+        if ($status == "Pending") {
+            return '<span class="badge bg-light text-dark">Pending</span>';
+        } elseif ($status == "In-Progress") {
+            return '<span class="badge bg-primary text-white">In-Progress</span>';
+        } elseif ($status == "Done") {
+            return '<span class="badge bg-success text-white">Done</span>';
+        } elseif ($status == "Closed") {
+            return '<span class="badge bg-info text-white">Closed</span>';
+        } elseif ($status == "Cancelled") {
+            return '<span class="badge bg-secondary text-light">Cancelled</span>';
         } else {
             return "N/A";
         }

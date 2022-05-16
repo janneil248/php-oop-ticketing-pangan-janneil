@@ -4,13 +4,14 @@ require_once('db_class.php');
 
 class Query
 {
-
+  
     public $role = "";
     public $department =[];
     public $firstname = "";
     public $lastname = "";
     public $email = "";
     public $hashpass = "";
+ 
     
 
     function __construct()
@@ -62,12 +63,7 @@ class Query
         return $new_id;
     }
 
-    public function complete($id)
-    {
-        $query = "UPDATE `todo` SET `status`='1' WHERE id = $id";
-        $taskComplete = $this->db->update($query);
-        return $taskComplete;
-    }
+
 
    
 }

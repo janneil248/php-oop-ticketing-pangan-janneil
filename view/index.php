@@ -1,8 +1,12 @@
 <?php
 require_once("../includes/functions.php");
+require_once("../model/ticket_class.php");
 Opera::sessionStart();
 Opera::roleAccess();
 
+$ticketquery = new TicketQuery;
+$user_id = $_SESSION["user_id"];
+$tickets = $ticketquery->selectTickets($user_id);
 
 
 

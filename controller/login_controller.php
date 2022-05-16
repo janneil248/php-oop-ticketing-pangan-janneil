@@ -18,6 +18,7 @@ class LoginController
         if ($result != null) {
             $hash = $row->password;
             if (password_verify($_POST["password"], $hash)) {
+                $_SESSION['user_id'] = $row->user_id;
                 $_SESSION['email'] = $row->email;
                 $_SESSION['role'] = Opera::roleAssign($row->role_id);
                 header("location: ../view/index.php");
@@ -34,6 +35,9 @@ class LoginController
     {
         Opera::sessionStart();
 
+        if (isset($_SESSION['user_id'])) {
+            unset($_SESSION['user_id']);
+        }
         if (isset($_SESSION['email'])) {
             unset($_SESSION['email']);
         }

@@ -1,9 +1,13 @@
 <?php
 require_once("../includes/functions.php");
+require_once("../model/ticket_class.php");
+
 Opera::sessionStart();
 Opera::roleAccess();
 
 
+$user_id = $_SESSION["user_id"];
+$tickets = Opera::showTickets($user_id);
 require_once("../html/header_tickets.php")
 ?>
 
@@ -12,7 +16,7 @@ require_once("../html/header_tickets.php")
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Tickets</h1>
-        <a href="tickets_create.html" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Submit a Ticket</a>
+        <a href="tickets_create.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Submit a Ticket</a>
     </div>
 
     <div class="card mb-4">
@@ -31,41 +35,16 @@ require_once("../html/header_tickets.php")
                         </tr>
                     </thead>
                     <tbody>
+                    <?php foreach ($tickets as $ticket) { ?>
                         <tr>
-                            <td>#39201</td>
-                            <td>06/15/2021</td>
-                            <td>IT Support</td>
-                            <td>$29.99</td>
-                            <td><span class="badge bg-light text-dark">Pending</span></td>
+                        <td><?= $ticket["ticket_id"]; ?></td>
+                        <td><?= $ticket["created_at"]; ?></td>
+                        <td><?= Opera::getUsersGroups($ticket["group_id"]); ?></td>
+                        <td><?= $ticket["title"]; ?></td>
+                        <td><?= Opera::getTicketStatus($ticket["status"]); ?></td>
                         </tr>
-                        <tr>
-                            <td>#38594</td>
-                            <td>05/15/2021</td>
-                            <td>IT Support</td>
-                            <td>$29.99</td>
-                            <td><span class="badge bg-primary text-white">In-Progress</span></td>
-                        </tr>
-                        <tr>
-                            <td>#38223</td>
-                            <td>04/15/2021</td>
-                            <td>Housekeeping</td>
-                            <td>$29.99</td>
-                            <td><span class="badge bg-success text-white">Done</span></td>
-                        </tr>
-                        <tr>
-                            <td>#38125</td>
-                            <td>03/15/2021</td>
-                            <td>Maintenance</td>
-                            <td>$29.99</td>
-                            <td><span class="badge bg-info text-white">Closed</span></td>
-                        </tr>
-                        <tr>
-                            <td>#39201</td>
-                            <td>06/15/2021</td>
-                            <td>IT Support</td>
-                            <td>$29.99</td>
-                            <td><span class="badge bg-secondary text-light">Cancelled</span></td>
-                        </tr>
+                    <?php } ?>
+                   
                     </tbody>
                 </table>
             </div>
