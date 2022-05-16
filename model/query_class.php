@@ -31,6 +31,13 @@ class Query
         $list = $this->db->select($query);
         return $list;
     }
+
+    public function selectUsersGroups()
+    {
+        $query = "SELECT * FROM `users_groups`";
+        $list = $this->db->select($query);
+        return $list;
+    }
  
 
     public function admin_create_user()

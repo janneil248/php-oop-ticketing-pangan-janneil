@@ -1,6 +1,8 @@
 <?php
+require_once("../includes/functions.php");
 require_once("../model/query_class.php");
 
+Opera::sessionStart();
 
 class UserController
 {
@@ -122,11 +124,7 @@ class UserController
             $ok = false;
         }
 
-     
-
-
         if ($ok) {
-
             $query->create_user();
         }
     }
