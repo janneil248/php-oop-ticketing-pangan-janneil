@@ -18,9 +18,7 @@ Opera::sessionContinue();
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="../https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="../https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
@@ -48,14 +46,18 @@ Opera::sessionContinue();
                                     </div>
                                     <form action="../controller/controller.php" method="post">
                                         <div class="form-group">
-                                            <input type="email" name="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                            <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                            <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
                                         </div>
+                                        <?php if (isset($_GET["error"])) { ?>
+                                            <div class="px-3 py-2 bg-gradient-danger text-white">
+                                                <?php echo $_GET["error"] ?>
+                                            </div>
+                                        <?php } ?>
+                                        <br>
+
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">
@@ -64,7 +66,7 @@ Opera::sessionContinue();
                                             </div>
                                         </div>
                                         <button type="submit" name="login" value="login" class="btn btn-primary btn-user btn-block">Login</button>
-                                  
+
                                     </form>
                                     <hr>
                                     <div class="text-center">

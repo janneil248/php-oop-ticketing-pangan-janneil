@@ -14,7 +14,6 @@ class UserController
         $ok = true;
         $errors = [];
 
-
         if (!isset($_POST["firstname"]) || $_POST["firstname"] === '') {
             $ok = false;
             array_push($errors, "First Name is Missing");
@@ -28,8 +27,6 @@ class UserController
         } else {
             $query->lastname = htmlspecialchars($_POST["lastname"] ?? "", ENT_QUOTES);
         };
-
-
 
         if (!isset($_POST["password"]) || $_POST["password"] === '') {
             $ok = false;
@@ -58,6 +55,18 @@ class UserController
         } else {
             $query->email = $_POST["email"];
         };
+
+        $result = $query->checkuser();
+        $row = $result->fetch(PDO::FETCH_OBJ);
+        
+        if ($row->email == $query->email) {
+            $ok = false;
+            array_push($errors, "Email Already Exist");
+        } else {
+            $query->email = $_POST["email"];
+        };
+
+        
 
 
         if (isset($_POST["admin_create_user"]) == "admin_create_user") {

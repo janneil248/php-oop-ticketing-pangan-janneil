@@ -4,7 +4,8 @@ Opera::sessionStart();
 
 ?>
 
-.<!DOCTYPE html>
+.
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -41,7 +42,7 @@ Opera::sessionStart();
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
 
-                           
+
                             <form action="../controller/controller.php" method="post">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
@@ -63,15 +64,15 @@ Opera::sessionStart();
                                     </div>
                                 </div>
                                 <?php if (isset($_SESSION["errors"])) { ?>
-                                <div class="px-3 py-2 bg-gradient-danger text-white">
-                                    <ul>
-                                        <?php foreach ($_SESSION["errors"] as $errors) {  ?>
-                                            <li><?= $errors ?></li>
-                                        <?php } ?>
-                                    </ul>
-                                </div>
-                            <?php } ?>
-                            <br>
+                                    <div class="px-3 py-2 bg-gradient-danger text-white">
+                                        <ul>
+                                            <?php foreach ($_SESSION["errors"] as $errors) {  ?>
+                                                <li><?= $errors ?></li>
+                                            <?php } ?>
+                                        </ul>
+                                    </div>
+                                <?php } ?>
+                                <br>
                                 <button type="submit" name="create_user" value="create_user" class="fw-500 btn btn-primary col">Register Account</button>
 
                                 </a>

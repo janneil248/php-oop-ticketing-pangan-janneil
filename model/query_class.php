@@ -19,7 +19,7 @@ class Query
         $this->db = new db;
     }
 
-    public function checklogin()
+    public function checkuser()
     {
         $query = "SELECT * FROM `users` WHERE `email` = '$this->email'";
         $list = $this->db->select($query);

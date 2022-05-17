@@ -15,7 +15,7 @@ class LoginController
         $query = new Query;
 
         $query->email = trim($_POST["email"]);
-        $result = $query->checklogin();
+        $result = $query->checkuser();
         $row = $result->fetch(PDO::FETCH_OBJ);
 
         if ($result != null) {
@@ -26,10 +26,9 @@ class LoginController
                 $_SESSION['role'] = Opera::roleAssign($row->role_id);
                 header("location: ../view/index.php");
             } else {
-                header("location: ../view/login.php");
+                header("location: ../view/login.php?error=Invalid Credentials");
             }
         } else {
-            echo "login";
         }
     }
 
