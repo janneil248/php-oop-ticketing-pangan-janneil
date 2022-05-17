@@ -9,6 +9,9 @@ class LoginController
     public function login()
     {
         Opera::sessionStart();
+        if (isset($_SESSION['error'])) {
+            unset($_SESSION['error']);
+        }
         $query = new Query;
 
         $query->email = trim($_POST["email"]);
@@ -34,6 +37,10 @@ class LoginController
     {
         Opera::sessionStart();
         $query = new Query;
+
+        if (isset($_SESSION['error'])) {
+            unset($_SESSION['error']);
+        }
 
         $result = $query->checkAutologin($new_id);
         $row = $result->fetch(PDO::FETCH_OBJ);
@@ -61,6 +68,9 @@ class LoginController
         }
         if (isset($_SESSION['role'])) {
             unset($_SESSION['role']);
+        }
+        if (isset($_SESSION['error'])) {
+            unset($_SESSION['error']);
         }
         session_destroy();
         header("location: ../view/login.php");

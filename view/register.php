@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<?php
+require_once("../includes/functions.php");
+Opera::sessionStart();
+
+?>
+
+.<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,9 +19,7 @@
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
@@ -36,33 +40,40 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
+
+                           
                             <form action="../controller/controller.php" method="post">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="First Name" name="firstname" required>
+                                        <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name" name="firstname" required>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Last Name" name="lastname" required>
+                                        <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name" name="lastname" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Email Address" name="email" required>
+                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" name="email" required>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password" name="password" required >
+                                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" name="password" required>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repeat Password" name="passwordvalidation" required>
+                                        <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password" name="passwordvalidation" required>
                                     </div>
                                 </div>
+                                <?php if (isset($_SESSION["errors"])) { ?>
+                                <div class="px-3 py-2 bg-gradient-danger text-white">
+                                    <ul>
+                                        <?php foreach ($_SESSION["errors"] as $errors) {  ?>
+                                            <li><?= $errors ?></li>
+                                        <?php } ?>
+                                    </ul>
+                                </div>
+                            <?php } ?>
+                            <br>
                                 <button type="submit" name="create_user" value="create_user" class="fw-500 btn btn-primary col">Register Account</button>
-                                    
+
                                 </a>
                             </form>
                             <hr>
@@ -88,7 +99,7 @@
     <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../js/sb-admin-2.min.js"></script>
 
 </body>
 

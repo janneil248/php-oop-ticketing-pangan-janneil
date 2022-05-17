@@ -71,5 +71,5 @@ require_once("../html/header_tickets.php")
 </div>
 <!-- End of Main Content -->
 <?php
-require_once("../html/footer_tickets.php");
+require_once("../html/footer.php");
 ?>

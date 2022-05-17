@@ -16,6 +16,17 @@ require_once("../html/header_tickets.php")
             <h1 class="h3 mb-0 text-gray-800">Create New User</h1>
         </div>
 
+        <?php if(isset($_SESSION["errors"])){ ?>
+            <div class="px-3 py-3 bg-gradient-danger text-white">
+            <ul>
+                <?php foreach ($_SESSION["errors"] as $errors){  ?>
+                    <li><?= $errors ?></li>
+                    <?php } ?>
+            </ul>
+        </div>
+        <?php } ?>
+        
+
         <div class="row">
             <div class="col-lg-8">
                 <div class="card mb-4">
@@ -111,5 +122,5 @@ require_once("../html/header_tickets.php")
 <!-- End of Main Content -->
 
 <?php
-require_once("../html/footer_tickets.php");
+require_once("../html/footer.php");
 ?>
