@@ -46,6 +46,7 @@ class Opera
         $splitpage = ($page - 1) * $numpage;
         return $ticketquery->selectTickets($user_id, $splitpage, $numpage);
     }
+    
     public static function showAllTickets($user_id)
     {
         $ticketquery = new TicketQuery;
