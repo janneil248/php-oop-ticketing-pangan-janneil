@@ -127,12 +127,11 @@ class UserController
 
     public function update_user()
     {
-     
+
         $query = new UserQuery;
         $ok = true;
         $errors = [];
         $user_id = $_SESSION["user_id"];
-
         $group = [];
         $groupinfo = $query->showUsersGroups($user_id);
         foreach ($groupinfo as $info) {
@@ -149,7 +148,6 @@ class UserController
 
         if (!isset($_POST["department"]) || $_POST["department"] === '') {
             $ok = false;
-            array_push($errors, "Please Choose a Department");
         } else {
             $query->department = $_POST["department"];
         }
@@ -168,12 +166,14 @@ class UserController
             $query->lastname = htmlspecialchars($_POST["lastname"] ?? "", ENT_QUOTES);
         };
 
+
         if (!isset($_POST["email"]) || $_POST["email"] === '') {
             $ok = false;
             array_push($errors, "Invalid Email Address");
         } else {
-            $query->email = $_POST["email"];
+            $email = $_POST["email"];
         };
+
 
         if (!isset($_POST["emailvalidation"]) || $_POST["emailvalidation"] === '') {
             $ok = false;
@@ -182,37 +182,48 @@ class UserController
             $emailvalidation = $_POST["emailvalidation"];
         };
 
-        if ($query->email == $emailvalidation) {
-            $query->email = htmlspecialchars($_POST["email"] ?? "", ENT_QUOTES);
-        } else {
-            array_push($errors, "Email address doesn't Match");
-            $ok = false;
-        }
 
-        $result = $query->checkuser()->rowcount();
+        // $result = $query->checkuser();
+        // $row = $result->fetch(PDO::FETCH_OBJ);
 
-        if ($result <= 1) {
-            $query->email = $_POST["email"];
-        } else {
-            $ok = false;
-            array_push($errors, "Email Already Exist");
-        }
+        // if ($row->email == $email) {
+        //     $ok = false;
+        //     array_push($errors, "Email Already Exist");
+        // } else {
+        //     $query->email = htmlspecialchars($_POST["email"] ?? "", ENT_QUOTES);
+        // };
+
+
 
         if (!isset($_POST["password"]) || $_POST["password"] === '') {
-            if (isset($_SESSION['errors'])) {
-                unset($_SESSION['errors']);
-            }
-            $query->update_user($user_id);
+            if ($email == $emailvalidation) {
+                $query->email = htmlspecialchars($_POST["email"] ?? "", ENT_QUOTES);     
+                if (isset($_SESSION['errors'])) {
+                    unset($_SESSION['errors']);
+                }
+                $query->update_user($user_id);
 
-            if(($query->department != $group)){
-                $query->delete_usergroup($user_id);
+                if (($query->department != $group)) {
+                    $query->delete_usergroup($user_id);
+                }
+
+                header("location: ../view/accountsettings.php");
+    
+            } else {
+                array_push($errors, "Email address doesn't Match");
+                $ok = false;
+                $_SESSION["errors"] = $errors;
+                header("location: ../view/accountsettings.php");
             }
-           
-            header("location: ../view/accountsettings.php");
         } else {
             $password = $_POST["password"];
             $passwordvalidation = $_POST["passwordvalidation"];
-
+            if ($email == $emailvalidation) {
+                $query->email = htmlspecialchars($_POST["email"] ?? "", ENT_QUOTES);
+            } else {
+                array_push($errors, "Email address doesn't Match");
+                $ok = false;
+            }
             if ($password == $passwordvalidation) {
                 $query->hashpass = password_hash($password, PASSWORD_DEFAULT);
             } else {
@@ -225,10 +236,10 @@ class UserController
                 }
                 $query->update_userpass($user_id);
 
-                if(($query->department != $group)){
+                if (($query->department != $group)) {
                     $query->delete_usergroup($user_id);
                 }
-               
+
                 header("location: ../view/accountsettings.php");
             } else {
                 $_SESSION["errors"] = $errors;
