@@ -9,14 +9,18 @@ require_once("../controller/login_controller.php");
 // $tickets = Opera::showTickets($user_id);
 // var_dump(Opera::previousNext($user_id));
 // // session_start();
-//        echo $_SESSION['email'];
-//        echo $_SESSION['role'];
-//        echo $_SESSION['user_id'];
+       echo $_SESSION['email'];
+       echo $_SESSION['role'];
+    //    unset($_SESSION['errors'])
+    if (isset($_SESSION['error'])) {
+        unset($_SESSION['error']);
+    }
+       var_dump($_SESSION['error']);
 //        echo "<br>";
 //        $user_id = $_SESSION["user_id"];
 //         // var_dump(Opera::pagination($user_id));
 
-$query = new UserQuery;
-$query->email = "janneil@gmail.com";
-$result = $query->checkuser()->rowcount();
-var_dump($result);
+// $query = new UserQuery;
+// $query->email = "janneil@gmail.com";
+// $result = $query->checkuser()->rowcount();
+// var_dump($result);

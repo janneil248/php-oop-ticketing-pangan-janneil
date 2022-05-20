@@ -10,6 +10,7 @@ class UserController
 
     public function create_user()
     {
+        Opera::sessionStart();
         $query = new UserQuery;
         $ok = true;
         $errors = [];
@@ -102,6 +103,8 @@ class UserController
 
 
         if ($ok) {
+            unset($_SESSION['errors']);
+
             if (isset($_POST["admin_create_user"]) == "admin_create_user") {
                 $query->admin_create_user();
                 header("location: ../view/users.php");
@@ -124,6 +127,7 @@ class UserController
 
     public function update_user()
     {
+     
         $query = new UserQuery;
         $ok = true;
         $errors = [];
@@ -195,10 +199,15 @@ class UserController
         }
 
         if (!isset($_POST["password"]) || $_POST["password"] === '') {
+            if (isset($_SESSION['errors'])) {
+                unset($_SESSION['errors']);
+            }
             $query->update_user($user_id);
+
             if(($query->department != $group)){
                 $query->delete_usergroup($user_id);
             }
+           
             header("location: ../view/accountsettings.php");
         } else {
             $password = $_POST["password"];
@@ -211,10 +220,15 @@ class UserController
                 $ok = false;
             }
             if ($ok) {
+                if (isset($_SESSION['errors'])) {
+                    unset($_SESSION['errors']);
+                }
                 $query->update_userpass($user_id);
+
                 if(($query->department != $group)){
                     $query->delete_usergroup($user_id);
                 }
+               
                 header("location: ../view/accountsettings.php");
             } else {
                 $_SESSION["errors"] = $errors;

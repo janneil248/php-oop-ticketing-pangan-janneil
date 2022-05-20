@@ -51,9 +51,9 @@ Opera::sessionContinue();
                                         <div class="form-group">
                                             <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" required>
                                         </div>
-                                        <?php if (isset($_GET["error"])) { ?>
+                                        <?php if (isset($_GET["errors"])) { ?>
                                             <div class="px-3 py-2 bg-gradient-danger text-white">
-                                                <?php echo $_GET["error"] ?>
+                                                <?php echo $_GET["errors"] ?>
                                             </div>
                                         <?php } ?>
                                         <br>

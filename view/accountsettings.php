@@ -8,6 +8,7 @@ $user_id = $_SESSION["user_id"];
 $userinfo = Opera::showAccountInfo($user_id);
 $group = Opera::checkGroup($user_id);
 
+
 require_once("../html/header_dashboards.php")
 
 ?>
@@ -51,7 +52,8 @@ require_once("../html/header_dashboards.php")
                     <div class="card mb-4">
                         <div class="card-header">Role</div>
                         <div class="card-body">
-                            <label class="form-control" id="postTitleInput" type="text" value="<?= Opera::roleAssign($userinfo->role_id) ?>" name="role"><?= Opera::roleAssign($userinfo->role_id) ?></label>
+                            <label class="form-control" id="postTitleInput" type="text"><?= Opera::roleAssign($userinfo->role_id) ?></label>
+                            <input type="hidden" value="<?=$userinfo->role_id?>" name="role">
                         </div>
                     </div>
 
@@ -92,40 +94,15 @@ require_once("../html/header_dashboards.php")
                             </div>
                         </div>
                     </div>
-                    <?php } else { ?>
-                        <div class="card mb-4">
+                <?php } else { ?>
+                    <div class="card mb-4">
                         <div class="card-header">Department</div>
                         <div class="card-body">
-                            <div class="form-check form-check-solid">
-                                <input class="form-check-input" id="flexCheckSolidDefault" type="checkbox" name="department[]" value="1" disabled <?php if (in_array(1, $group)) {
-                                                                                                                                                echo 'checked';
-                                                                                                                                            } ?>>
-                                <label class="form-check-label" for="flexCheckSolidDefault">HR</label>
-                            </div>
-                            <div class="form-check form-check-solid">
-                                <input class="form-check-input" id="flexCheckSolidChecked" type="checkbox" name="department[]" value="2" disabled <?php if (in_array(2, $group)) {
-                                                                                                                                                echo 'checked';
-                                                                                                                                            } ?>>
-                                <label class="form-check-label" for="flexCheckSolidChecked">IT</label>
-                            </div>
-                            <div class="form-check form-check-solid">
-                                <input class="form-check-input" id="flexCheckSolidDefault" type="checkbox" name="department[]" value="3" disabled <?php if (in_array(3, $group)) {
-                                                                                                                                                echo 'checked';
-                                                                                                                                            } ?>>
-                                <label class="form-check-label" for="flexCheckSolidDefault">Marketing</label>
-                            </div>
-                            <div class="form-check form-check-solid">
-                                <input class="form-check-input" id="flexCheckSolidChecked" type="checkbox" name="department[]" value="4" disabled <?php if (in_array(4, $group)) {
-                                                                                                                                                echo 'checked';
-                                                                                                                                            } ?>>
-                                <label class="form-check-label" for="flexCheckSolidChecked">Maintenance</label>
-                            </div>
-                            <div class="form-check form-check-solid">
-                                <input class="form-check-input" id="flexCheckSolidChecked" type="checkbox" name="department[]" value="5" disabled <?php if (in_array(5, $group)) {
-                                                                                                                                                echo 'checked';
-                                                                                                                                            } ?>>
-                                <label class="form-check-label" for="flexCheckSolidChecked">Housekeeping</label>
-                            </div>
+                            <?php foreach ($group as $dept) { ?>
+                                <label class="form-check-label" for="flexCheckSolidChecked"><?= Opera::getUsersGroups($dept); ?></label><br>
+                                <input type="hidden" name="department[]" value="<?= $dept ?>;">
+                            <?php } ?>
+
                         </div>
                     </div>
                 <?php } ?>

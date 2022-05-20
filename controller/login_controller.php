@@ -9,9 +9,7 @@ class LoginController
     public function login()
     {
         Opera::sessionStart();
-        if (isset($_SESSION['error'])) {
-            unset($_SESSION['error']);
-        }
+       
         $query = new UserQuery;
 
         $query->email = trim($_POST["email"]);
@@ -24,9 +22,12 @@ class LoginController
                 $_SESSION['user_id'] = $row->user_id;
                 $_SESSION['email'] = $row->email;
                 $_SESSION['role'] = Opera::roleAssign($row->role_id);
+                if (isset($_SESSION['errors'])) {
+                    unset($_SESSION['errors']);
+                }
                 header("location: ../view/index.php");
             } else {
-                header("location: ../view/login.php?error=Invalid Credentials");
+                header("location: ../view/login.php?errors=Invalid Credentials");
             }
         } else {
         }
@@ -37,9 +38,7 @@ class LoginController
         Opera::sessionStart();
         $query = new UserQuery;
 
-        if (isset($_SESSION['error'])) {
-            unset($_SESSION['error']);
-        }
+       
 
         $result = $query->checklogin($new_id);
         $row = $result->fetch(PDO::FETCH_OBJ);
@@ -48,6 +47,9 @@ class LoginController
             $_SESSION['user_id'] = $row->user_id;
             $_SESSION['email'] = $row->email;
             $_SESSION['role'] = Opera::roleAssign($row->role_id);
+            if (isset($_SESSION['errors'])) {
+                unset($_SESSION['errors']);
+            }
             header("location: ../view/index.php");
         } else {
             header("location: ../view/login.php");
