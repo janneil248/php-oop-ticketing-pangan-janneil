@@ -46,10 +46,10 @@ Opera::sessionContinue();
                                     </div>
                                     <form action="../controller/controller.php" method="post">
                                         <div class="form-group">
-                                            <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                                            <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                                            <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" required>
                                         </div>
                                         <?php if (isset($_GET["error"])) { ?>
                                             <div class="px-3 py-2 bg-gradient-danger text-white">

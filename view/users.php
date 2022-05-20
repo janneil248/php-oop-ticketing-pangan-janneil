@@ -1,15 +1,15 @@
 <?php
 require_once("../includes/functions.php");
-require_once("../model/query_class.php");
 
 Opera::sessionStart();
 Opera::roleAdmin();
 
-$query = new Query;
-$users = $query->selectUsers();
+$user_id = $_SESSION["user_id"];
+$users = Opera::showUsers($user_id);
+$count = Opera::showAllUsers($user_id)->rowcount();
+$pagination= Opera::pagination($user_id,$count);
 
-
-require_once("../html/header_tickets.php")
+require_once("../html/header_dashboards.php")
 ?>
 
 
@@ -45,7 +45,7 @@ require_once("../html/header_tickets.php")
                                 <td><?= Opera::roleAssign($user["role_id"]) ?></td>
                                 <td>
                                     <?php
-                                    $usersgroups = $query->selectUsersGroups();
+                                    $usersgroups = Opera::selectUsersGroups();
 
                                     foreach ($usersgroups as $usergroup) {
                                         if ($usergroup["user_id"] == $user["user_id"]) {
@@ -68,14 +68,14 @@ require_once("../html/header_tickets.php")
 
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-            <a class="page-link">Previous</a>
+    <li class="page-item">
+            <a class="page-link" href="../view/users.php?page=<?= $pagination[0]?>">Previous</a>
         </li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <?php for ($i = 1; $i <= $pagination[2]; $i++) : ?>
+            <li class="page-item"><a class="page-link" href="../view/users.php?page=<?= $i; ?>"><?= $i; ?></a></li>
+        <?php endfor; ?>
         <li class="page-item">
-            <a class="page-link" href="#">Next</a>
+        <a class="page-link" href="../view/users.php?page=<?= $pagination[1]?>">Next</a>
         </li>
     </ul>
 </nav>

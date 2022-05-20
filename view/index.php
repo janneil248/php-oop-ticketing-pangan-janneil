@@ -1,14 +1,12 @@
 <?php
 require_once("../includes/functions.php");
-require_once("../model/ticket_class.php");
+
 Opera::sessionStart();
 Opera::roleAccess();
 
-$ticketquery = new TicketQuery;
 $user_id = $_SESSION["user_id"];
-$tickets = $ticketquery->selectTickets($user_id);
-
-
+$ticketStatus = Opera::selectTicketsStatus($user_id);
+$ticketpercentage = Opera::getGroupPercentage();
 
 require_once("../html/header_dashboards.php");
 
@@ -29,7 +27,7 @@ require_once("../html/header_dashboards.php");
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Pending</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">20</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $ticketStatus[0]?> </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-paper-plane fa-2x text-gray-300"></i>
@@ -47,7 +45,7 @@ require_once("../html/header_dashboards.php");
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 In Progress</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $ticketStatus[1]?></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-spinner fa-2x text-gray-300"></i>
@@ -67,7 +65,7 @@ require_once("../html/header_dashboards.php");
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">67</div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= $ticketStatus[2]?></div>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +85,7 @@ require_once("../html/header_dashboards.php");
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                 Cancelled</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $ticketStatus[4]?></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-trash fa-2x text-gray-300"></i>
@@ -110,25 +108,29 @@ require_once("../html/header_dashboards.php");
                     <h6 class="m-0 font-weight-bold text-primary">Tickets</h6>
                 </div>
                 <div class="card-body">
-                    <h4 class="small font-weight-bold">Housekeeping<span class="float-right">20%</span></h4>
+                    <h4 class="small font-weight-bold">HR<span class="float-right"><?= $ticketpercentage[0]."%"?></span></h4>
                     <div class="progress mb-4">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: <?= $ticketpercentage[0]."%"?>" aria-valuenow="<?= $ticketpercentage[0]?>" aria-valuemin="<?= 100 - $ticketpercentage[0]?>" aria-valuemax="100"></div>
                     </div>
-                    <h4 class="small font-weight-bold">HR<span class="float-right">40%</span></h4>
+
+                    <h4 class="small font-weight-bold">IT<span class="float-right"><?= $ticketpercentage[1]."%"?></span></h4>
                     <div class="progress mb-4">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <h4 class="small font-weight-bold">IT<span class="float-right">60%</span></h4>
+                        <div class="progress-bar" role="progressbar" style="width: <?= $ticketpercentage[1]."%"?>" aria-valuenow="<?= $ticketpercentage[1]?>" aria-valuemin="<?= 100 - $ticketpercentage[0]?>" aria-valuemax="100"></div>
+                    </div> 
+
+                    <h4 class="small font-weight-bold">Marketing<span class="float-right"><?= $ticketpercentage[2]."%"?></span></h4>
                     <div class="progress mb-4">
-                        <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-success" role="progressbar" style="width: <?= $ticketpercentage[2]."%"?>" aria-valuenow="<?= $ticketpercentage[2]?>" aria-valuemin="<?= 100 - $ticketpercentage[0]?>" aria-valuemax="100"></div>
                     </div>
-                    <h4 class="small font-weight-bold">Maintenance<span class="float-right">80%</span></h4>
+
+                    <h4 class="small font-weight-bold">Maintenance<span class="float-right"><?= $ticketpercentage[3]."%"?></span></h4>
                     <div class="progress mb-4">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-info" role="progressbar" style="width: <?= $ticketpercentage[3]."%"?>" aria-valuenow="<?= $ticketpercentage[3]?>" aria-valuemin="<?= 100 - $ticketpercentage[0]?>" aria-valuemax="100"></div>
                     </div>
-                    <h4 class="small font-weight-bold">Marketing<span class="float-right">Complete!</span></h4>
-                    <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+
+                    <h4 class="small font-weight-bold">Housekeeping<span class="float-right"><?= $ticketpercentage[4]."%"?></span></h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: <?= $ticketpercentage[4]."%"?>" aria-valuenow="<?= $ticketpercentage[4]?>" aria-valuemin="<?= 100 - $ticketpercentage[0]?>" aria-valuemax="100"></div>
                     </div>
                 </div>
             </div>

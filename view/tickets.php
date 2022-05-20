@@ -1,14 +1,16 @@
 <?php
 require_once("../includes/functions.php");
-require_once("../model/ticket_class.php");
 
 Opera::sessionStart();
 Opera::roleAccess();
 
-
 $user_id = $_SESSION["user_id"];
+$count = Opera::showAllTickets($user_id)->rowcount();
 $tickets = Opera::showTickets($user_id);
-require_once("../html/header_tickets.php")
+$pagination= Opera::pagination($user_id,$count);
+
+
+require_once("../html/header_dashboards.php")
 ?>
 
 <!-- Begin Page Content -->
@@ -35,16 +37,24 @@ require_once("../html/header_tickets.php")
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($tickets as $ticket) { ?>
-                        <tr>
-                        <td><?= $ticket["ticket_id"]; ?></td>
-                        <td><?= $ticket["created_at"]; ?></td>
-                        <td><?= Opera::getUsersGroups($ticket["group_id"]); ?></td>
-                        <td><?= $ticket["title"]; ?></td>
-                        <td><?= Opera::getTicketStatus($ticket["status"]); ?></td>
-                        </tr>
-                    <?php } ?>
-                   
+                        <?php foreach ($tickets as $ticket) { ?>
+                            <tr>
+                                <td><?= $ticket["ticket_id"]; ?></td>
+                                <td><?= $ticket["created_at"]; ?></td>
+                                <td><?= Opera::getUsersGroups($ticket["group_id"]); ?></td>
+                                <td><?= $ticket["title"]; ?></td>
+                                <td><?= Opera::getTicketStatus($ticket["status"]); ?></td>
+                                <?php if ($_SESSION["role"] == "Admin") { ?>
+                                    <td> <a href="update.php?ticket_id=<?= $ticket["ticket_id"]; ?>" type="button" class="btn btn-light btn-icon-split btn-sm">
+                                            <span class="icon text-gray-600">
+                                                <i class="fas fa-arrow-right"></i>
+                                            </span>
+                                            <span class="text">Update</span>
+                                        </a></td>
+                                <?php } ?>
+                            </tr>
+                        <?php } ?>
+
                     </tbody>
                 </table>
             </div>
@@ -56,14 +66,14 @@ require_once("../html/header_tickets.php")
 
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-            <a class="page-link">Previous</a>
-        </li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
         <li class="page-item">
-            <a class="page-link" href="#">Next</a>
+            <a class="page-link" href="../view/tickets.php?page=<?= $pagination[0]?>">Previous</a>
+        </li>
+        <?php for ($i = 1; $i <= $pagination[2]; $i++) : ?>
+            <li class="page-item"><a class="page-link" href="../view/tickets.php?page=<?= $i; ?>"><?= $i; ?></a></li>
+        <?php endfor; ?>
+        <li class="page-item">
+        <a class="page-link" href="../view/tickets.php?page=<?= $pagination[1]?>">Next</a>
         </li>
     </ul>
 </nav>

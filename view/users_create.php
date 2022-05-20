@@ -1,10 +1,10 @@
 <?php
 require_once("../includes/functions.php");
+
 Opera::sessionStart();
 Opera::roleAdmin();
 
-
-require_once("../html/header_tickets.php")
+require_once("../html/header_dashboards.php")
 
 ?>
 

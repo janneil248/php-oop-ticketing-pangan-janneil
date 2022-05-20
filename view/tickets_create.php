@@ -1,11 +1,10 @@
 <?php
 require_once("../includes/functions.php");
+
 Opera::sessionStart();
 Opera::roleAccess();
 
-
-
-require_once("../html/header_tickets.php")
+require_once("../html/header_dashboards.php")
 ?>
 
 <!-- Begin Page Content -->
@@ -33,13 +32,13 @@ require_once("../html/header_tickets.php")
                 <div class="card mb-4">
                     <div class="card-header">Title</div>
                     <div class="card-body">
-                        <input class="form-control" id="postTitleInput" type="text" placeholder="Ticket Title" name="title">
+                        <input class="form-control" id="postTitleInput" type="text" placeholder="Ticket Title" name="title" required>
                     </div>
                 </div>
                 <div class="card mb-4">
                     <div class="card-header">Content</div>
                     <div class="card-body">
-                        <textarea class="lh-base form-control" type="text" placeholder="Ticket Content" rows="4" name="content"></textarea>
+                        <textarea class="lh-base form-control" type="text" placeholder="Ticket Content" rows="4" name="content" required></textarea>
                     </div>
                 </div>
             </div>

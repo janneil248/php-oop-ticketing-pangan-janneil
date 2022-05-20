@@ -6,6 +6,15 @@ Opera::sessionStart();
 
 class TicketController
 {
+    public function update_ticket()
+    {
+        $ticketQuery = new TicketQuery;
+        echo $ticketQuery->status = $_POST["status"];
+        echo $ticketQuery->ticket_id = $_POST["ticket_id"];
+        $ticketQuery->update_ticket();
+        header("location: ../view/tickets.php");
+    }
+
 
     public function submit_ticket()
     {
@@ -41,6 +50,7 @@ class TicketController
 
         if ($ok) {
             $ticketQuery->submit_ticket();
+            header("location: ../view/tickets.php");
         }
     }
 }
