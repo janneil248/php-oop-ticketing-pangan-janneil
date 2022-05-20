@@ -83,6 +83,9 @@ class UserQuery
         $data = [$this->firstname, $this->lastname, $this->email, $this->hashpass];
         $query = "INSERT INTO `users`(`first_name`, `last_name`, `email`, `password`) VALUES (?,?,?,?)";
         $new_id = $this->db->insert($query, $data);
+        
+        $queryset = "INSERT INTO `settings`(`user_id`) VALUES (?)";
+        $this->db->insert($queryset, [$new_id]);
         return $new_id;
     }
     public function update_userpass($user_id)
