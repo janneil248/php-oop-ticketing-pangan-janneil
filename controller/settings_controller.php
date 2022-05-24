@@ -41,7 +41,7 @@ class SettingController
 
         if ($ok) {
             $settingQuery->update_pagesetting();
-            header("location: ../view/pagesettings.php");
+            header("location: ../view/pagesettings.php?success=Update Successful!");
 
            
         }

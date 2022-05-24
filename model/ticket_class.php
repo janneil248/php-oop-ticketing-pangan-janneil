@@ -30,12 +30,12 @@ class TicketQuery
             }
     
             $group = "(".implode(",", $list).")";
-            $query = "SELECT * FROM `tickets` WHERE `group_id` IN $group LIMIT $splitpage, $numpage";
+            $query = "SELECT * FROM `tickets` WHERE `group_id` IN $group ORDER BY `ticket_id` ASC LIMIT $splitpage, $numpage";
             $list = $this->db->select($query);
             return $list;
         
         } else {
-            $query = "SELECT * FROM `tickets` WHERE `user_id` = $user_id LIMIT $splitpage, $numpage";
+            $query = "SELECT * FROM `tickets` WHERE `user_id` = $user_id  ORDER BY `ticket_id` ASC LIMIT $splitpage, $numpage";
             $list = $this->db->select($query);
             return $list;
         }

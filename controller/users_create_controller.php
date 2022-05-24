@@ -129,6 +129,7 @@ class UserController
     {
 
         $query = new UserQuery;
+
         $ok = true;
         $errors = [];
         $user_id = $_SESSION["user_id"];
@@ -147,7 +148,12 @@ class UserController
         };
 
         if (!isset($_POST["department"]) || $_POST["department"] === '') {
-            $ok = false;
+            if ($_SESSION["role"] == "Admin") {
+                $ok = false;
+                array_push($errors, " No Department");
+            } else {
+                $query->department = null;
+            }
         } else {
             $query->department = $_POST["department"];
         }
@@ -182,69 +188,48 @@ class UserController
             $emailvalidation = $_POST["emailvalidation"];
         };
 
-
-        // $result = $query->checkuser();
-        // $row = $result->fetch(PDO::FETCH_OBJ);
-
-        // if ($row->email == $email) {
-        //     $ok = false;
-        //     array_push($errors, "Email Already Exist");
-        // } else {
-        //     $query->email = htmlspecialchars($_POST["email"] ?? "", ENT_QUOTES);
-        // };
-
-
-
-        if (!isset($_POST["password"]) || $_POST["password"] === '') {
-            if ($email == $emailvalidation) {
-                $query->email = htmlspecialchars($_POST["email"] ?? "", ENT_QUOTES);     
-                if (isset($_SESSION['errors'])) {
-                    unset($_SESSION['errors']);
-                }
-                $query->update_user($user_id);
-
-                if (($query->department != $group)) {
-                    $query->delete_usergroup($user_id);
-                }
-
-                header("location: ../view/accountsettings.php");
-    
-            } else {
-                array_push($errors, "Email address doesn't Match");
-                $ok = false;
-                $_SESSION["errors"] = $errors;
-                header("location: ../view/accountsettings.php");
-            }
+        if ($email == $emailvalidation) {
+            $query->email = htmlspecialchars($_POST["email"] ?? "", ENT_QUOTES);
         } else {
+            array_push($errors, "Email doesn't Match");
+            $ok = false;
+        }
+  
+        if (isset($_POST["password"]) || $_POST["password"] === '') {
             $password = $_POST["password"];
             $passwordvalidation = $_POST["passwordvalidation"];
-            if ($email == $emailvalidation) {
-                $query->email = htmlspecialchars($_POST["email"] ?? "", ENT_QUOTES);
-            } else {
-                array_push($errors, "Email address doesn't Match");
-                $ok = false;
-            }
-            if ($password == $passwordvalidation) {
-                $query->hashpass = password_hash($password, PASSWORD_DEFAULT);
-            } else {
+            if ($password != $passwordvalidation) {
                 array_push($errors, "Password doesn't Match");
                 $ok = false;
-            }
-            if ($ok) {
-                if (isset($_SESSION['errors'])) {
-                    unset($_SESSION['errors']);
-                }
-                $query->update_userpass($user_id);
+            }}
 
-                if (($query->department != $group)) {
+        if ($ok) {
+            if (!isset($_POST["password"]) || $_POST["password"] === '') {
+                $query->update_user($user_id);
+
+                if ($query->department != $group || $query->department != null) {
                     $query->delete_usergroup($user_id);
                 }
-
-                header("location: ../view/accountsettings.php");
+                unset($_SESSION["errors"]);
+                header("location: ../view/accountsettings.php?success=Update Successfully");
             } else {
-                $_SESSION["errors"] = $errors;
-                header("location: ../view/accountsettings.php");
+                $password = $_POST["password"];
+                $passwordvalidation = $_POST["passwordvalidation"];
+                if ($password == $passwordvalidation) {
+                    $query->hashpass = password_hash($password, PASSWORD_DEFAULT);
+                    $query->update_userpass($user_id);
+
+                    if ($query->department != $group || $query->department != null) {
+                        $query->delete_usergroup($user_id);
+                    }
+                    unset($_SESSION["errors"]);
+                    header("location: ../view/accountsettings.php?success=Update Successfully");
+                } else {
+                }
             }
+        } else {
+            $_SESSION["errors"] = $errors;
+            header("location: ../view/accountsettings.php");
         }
     }
 }

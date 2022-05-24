@@ -17,10 +17,16 @@ require_once("../html/header_dashboards.php")
 <form action="../controller/controller.php" method="post">
     <div class="container-fluid">
         <!-- Page Heading -->
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <div class="d-sm-flex align-items-center mb-4">
+            <a class="	fa fa-chevron-left" aria-hidden="true" href="index.php"></a>
+            &nbsp; &nbsp;
             <h1 class="h3 mb-0 text-gray-800">Account Settings</h1>
         </div>
-
+        <?php if (isset($_GET["success"])) { ?>
+            <div class="px-3 py-2 bg-gradient-success text-white">
+                <?php echo $_GET["success"] ?>
+            </div>
+        <?php } ?>
         <?php if (isset($_SESSION["errors"])) { ?>
             <div class="px-3 py-3 bg-gradient-danger text-white">
                 <ul>

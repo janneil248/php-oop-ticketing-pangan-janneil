@@ -12,10 +12,11 @@ require_once("../controller/login_controller.php");
        echo $_SESSION['email'];
        echo $_SESSION['role'];
     //    unset($_SESSION['errors'])
-    if (isset($_SESSION['error'])) {
-        unset($_SESSION['error']);
-    }
-       var_dump($_SESSION['error']);
+    // if (isset($_SESSION['errors'])) {
+    //     unset($_SESSION['errors']);
+    // } 
+    unset($_SESSION["errors"]);
+       var_dump($_SESSION['errors']);
 //        echo "<br>";
 //        $user_id = $_SESSION["user_id"];
 //         // var_dump(Opera::pagination($user_id));
