@@ -108,27 +108,27 @@ require_once("../html/header_dashboards.php");
                     <h6 class="m-0 font-weight-bold text-primary">Tickets</h6>
                 </div>
                 <div class="card-body">
-                    <h4 class="small font-weight-bold">HR<span class="float-right"><?= $ticketpercentage[0]."%"?></span></h4>
+                    <h4 class="small font-weight-bold">HR<span class="float-right"><?= round($ticketpercentage[0],2)."%"?></span></h4>
                     <div class="progress mb-4">
                         <div class="progress-bar bg-warning" role="progressbar" style="width: <?= $ticketpercentage[0]."%"?>" aria-valuenow="<?= $ticketpercentage[0]?>" aria-valuemin="<?= 100 - $ticketpercentage[0]?>" aria-valuemax="100"></div>
                     </div>
 
-                    <h4 class="small font-weight-bold">IT<span class="float-right"><?= $ticketpercentage[1]."%"?></span></h4>
+                    <h4 class="small font-weight-bold">IT<span class="float-right"><?= round($ticketpercentage[1],2)."%"?></span></h4>
                     <div class="progress mb-4">
                         <div class="progress-bar" role="progressbar" style="width: <?= $ticketpercentage[1]."%"?>" aria-valuenow="<?= $ticketpercentage[1]?>" aria-valuemin="<?= 100 - $ticketpercentage[0]?>" aria-valuemax="100"></div>
                     </div> 
 
-                    <h4 class="small font-weight-bold">Marketing<span class="float-right"><?= $ticketpercentage[2]."%"?></span></h4>
+                    <h4 class="small font-weight-bold">Marketing<span class="float-right"><?= round($ticketpercentage[2],2)."%"?></span></h4>
                     <div class="progress mb-4">
                         <div class="progress-bar bg-success" role="progressbar" style="width: <?= $ticketpercentage[2]."%"?>" aria-valuenow="<?= $ticketpercentage[2]?>" aria-valuemin="<?= 100 - $ticketpercentage[0]?>" aria-valuemax="100"></div>
                     </div>
 
-                    <h4 class="small font-weight-bold">Maintenance<span class="float-right"><?= $ticketpercentage[3]."%"?></span></h4>
+                    <h4 class="small font-weight-bold">Maintenance<span class="float-right"><?= round($ticketpercentage[3],2)."%"?></span></h4>
                     <div class="progress mb-4">
                         <div class="progress-bar bg-info" role="progressbar" style="width: <?= $ticketpercentage[3]."%"?>" aria-valuenow="<?= $ticketpercentage[3]?>" aria-valuemin="<?= 100 - $ticketpercentage[0]?>" aria-valuemax="100"></div>
                     </div>
 
-                    <h4 class="small font-weight-bold">Housekeeping<span class="float-right"><?= $ticketpercentage[4]."%"?></span></h4>
+                    <h4 class="small font-weight-bold">Housekeeping<span class="float-right"><?= round($ticketpercentage[4],2)."%"?></span></h4>
                     <div class="progress mb-4">
                         <div class="progress-bar bg-danger" role="progressbar" style="width: <?= $ticketpercentage[4]."%"?>" aria-valuenow="<?= $ticketpercentage[4]?>" aria-valuemin="<?= 100 - $ticketpercentage[0]?>" aria-valuemax="100"></div>
                     </div>

@@ -46,5 +46,5 @@ if (isset($_POST["update"]) == "update") {
 }
 
 if (isset($_POST["page_settings"]) == "page_settings") {
-    echo $settingController->submit_pagesetting();
+    $settingController->submit_pagesetting();
 }

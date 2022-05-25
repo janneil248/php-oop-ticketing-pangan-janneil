@@ -7,5 +7,5 @@ define("DB_USER", "root");
 define("DB_PASS", "passw0rd");
 
 
-define("WEB_NAME",  "PHP Pangan 2022");
+define("WEB_NAME",  "PHP Pangan ".Date("Y"));
 

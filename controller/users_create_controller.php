@@ -116,10 +116,10 @@ class UserController
         } else {
             $_SESSION["errors"] = $errors;
             if (isset($_POST["admin_create_user"]) == "admin_create_user") {
-                header("location: ../view/users_create.php");
+                header("location: ../view/users_create.php?fname=$query->firstname&lname=$query->lastname&email=$query->email");
             } else {
 
-                header("location: ../view/register.php");
+                header("location: ../view/register.php?fname=$query->firstname&lname=$query->lastname&email=$query->email");
             }
         }
     }

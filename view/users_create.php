@@ -70,10 +70,10 @@ require_once("../html/header_dashboards.php")
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-6">
-                                <input class="form-control" id="exampleFormControlInput1" type="text" placeholder="First Name" name="firstname" required>
+                                <input class="form-control" id="exampleFormControlInput1" type="text" placeholder="First Name" name="firstname" value="<?php echo $_GET['fname'] ?? "" ?>" required>
                             </div>
                             <div class="col-lg-6">
-                                <input class="form-control" id="exampleFormControlInput2" type="text" placeholder="Last Name" name="lastname" required>
+                                <input class="form-control" id="exampleFormControlInput2" type="text" placeholder="Last Name" name="lastname" value="<?php echo $_GET['lname'] ?? "" ?>" required>
                             </div>
                         </div>
                     </div>
@@ -83,7 +83,7 @@ require_once("../html/header_dashboards.php")
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-6">
-                                <input class="form-control" id="exampleFormControlInput1" type="email" placeholder="Ex: yourname@example.com" name="email" required>
+                                <input class="form-control" id="exampleFormControlInput1" type="email" placeholder="Ex: yourname@example.com" name="email" value="<?php echo $_GET['email'] ?? "" ?>" required>
                             </div>
                             <div class="col-lg-6">
                                 <input class="form-control" id="exampleFormControlInput2" type="email" placeholder="Retype Email" name="emailvalidation" required>

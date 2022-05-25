@@ -46,14 +46,14 @@ Opera::sessionStart();
                             <form action="../controller/controller.php" method="post">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name" name="firstname" required>
+                                        <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name" name="firstname" value="<?php echo $_GET['fname'] ?? "" ?>" required>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name" name="lastname" required>
+                                        <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name" name="lastname" value="<?php echo $_GET['lname'] ?? "" ?>" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" name="email" required>
+                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" name="email" value="<?php echo $_GET['email'] ?? "" ?>" required>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
