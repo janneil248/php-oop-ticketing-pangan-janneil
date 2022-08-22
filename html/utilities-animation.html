@@ -9,19 +9,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tickets</title>
+    <title>SB Admin 2 - Animation Utilities</title>
 
-    <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -76,19 +73,19 @@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+            <li class="nav-item active">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Utilities</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Utilities:</h6>
                         <a class="collapse-item" href="utilities-color.html">Colors</a>
                         <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                        <a class="collapse-item active" href="utilities-animation.html">Animations</a>
                         <a class="collapse-item" href="utilities-other.html">Other</a>
                     </div>
                 </div>
@@ -131,7 +128,7 @@
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
@@ -158,11 +155,9 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <form class="form-inline">
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                    </form>
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
 
                     <!-- Topbar Search -->
                     <form
@@ -362,115 +357,113 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Users</h1>
-                        <a href="users_create.html" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Create New User</a>
-                    </div>
 
-                    <div class="card mb-4">
-                        <div class="card-header">All Users</div>
-                        <div class="card-body p-0">
-                            <!-- Billing history table-->
-                            <div class="table-responsive table-billing-history">
-                                <table class="table mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th class="border-gray-200" scope="col">User</th>
-                                            <th class="border-gray-200" scope="col">Email</th>
-                                            <th class="border-gray-200" scope="col">Role</th>
-                                            <th class="border-gray-200" scope="col">Groups</th>
-                                            <th class="border-gray-200" scope="col">Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Ellaine Bongbong</td>
-                                            <td>ellaine@gmail.com</td>
-                                            <td>User</td>
-                                            <td>
-                                                <span class="badge badge-primary">HR</span>
-                                                <span class="badge badge-secondary">Marketing</span>
-                                                <span class="badge badge-success">IT</span>
-                                                <span class="badge badge-danger">Maintenance</span>
-                                                <span class="badge badge-warning">Housekeeping</span>
-                                            </td>
-                                            <td><span class="badge bg-success text-dark">Active</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Arley Licup</td>
-                                            <td>arley@gmail.com</td>
-                                            <td>User</td>
-                                            <td>
-                                                <span class="badge badge-primary">HR</span>
-                                                <span class="badge badge-secondary">Marketing</span>
-                                                <span class="badge badge-success">IT</span>
-                                            </td>
-                                            <td><span class="badge bg-secondary text-white">Inactive</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Gemeja Manalo</td>
-                                            <td>gemeja@gmail.com</td>
-                                            <td>User</td>
-                                            <td>
-                                                <span class="badge badge-success">IT</span>
-                                            </td>
-                                            <td><span class="badge bg-success text-white">Active</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Rendel Mallari</td>
-                                            <td>rendel@gmail.com</td>
-                                            <td>Admin</td>
-                                            <td>
-                                                <span class="badge badge-danger">Maintenance</span>
-                                                <span class="badge badge-warning">Housekeeping</span>
-                                            </td>
-                                            <td><span class="badge bg-success text-white">Active</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jason Ramirez</td>
-                                            <td>jason@gmail.com</td>
-                                            <td>User</td>
-                                            <td>
-                                                <span class="badge badge-secondary">Marketing</span>
-                                            </td>
-                                            <td><span class="badge bg-secondary text-light">Inactive</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Neil Pangan</td>
-                                            <td>neil@gmail.com</td>
-                                            <td>Admin</td>
-                                            <td>
-                                                <span class="badge badge-primary">HR</span>
-                                                <span class="badge badge-secondary">Marketing</span>
-                                                <span class="badge badge-success">IT</span>
-                                                <span class="badge badge-danger">Maintenance</span>
-                                                <span class="badge badge-warning">Housekeeping</span>
-                                            </td>
-                                            <td><span class="badge bg-secondary text-light">Inactive</span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-1 text-gray-800">Animation Utilities</h1>
+                    <p class="mb-4">Bootstrap's default utility classes can be found on the official <a
+                            href="https://getbootstrap.com/docs">Bootstrap Documentation</a> page. The custom utilities
+                        below were created to extend this theme past the default utility classes built into Bootstrap's
+                        framework.</p>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Grow In Utility -->
+                        <div class="col-lg-6">
+
+                            <div class="card position-relative">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Grow In Animation Utilty</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <code>.animated--grow-in</code>
+                                    </div>
+                                    <div class="small mb-1">Navbar Dropdown Example:</div>
+                                    <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                                        <a class="navbar-brand" href="#">Navbar</a>
+                                        <ul class="navbar-nav ml-auto">
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                                    role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    Dropdown
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right animated--grow-in"
+                                                    aria-labelledby="navbarDropdown">
+                                                    <a class="dropdown-item" href="#">Action</a>
+                                                    <a class="dropdown-item" href="#">Another action</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                    <p class="mb-0 small">Note: This utility animates the CSS transform property,
+                                        meaning it will override any existing transforms on an element being animated!
+                                        In this theme, the grow in animation is only being used on dropdowns within the
+                                        navbar.</p>
+                                </div>
                             </div>
+
                         </div>
+
+                        <!-- Fade In Utility -->
+                        <div class="col-lg-6">
+
+                            <div class="card position-relative">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Fade In Animation Utilty</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <code>.animated--fade-in</code>
+                                    </div>
+                                    <div class="small mb-1">Navbar Dropdown Example:</div>
+                                    <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                                        <a class="navbar-brand" href="#">Navbar</a>
+                                        <ul class="navbar-nav ml-auto">
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                                    role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    Dropdown
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right animated--fade-in"
+                                                    aria-labelledby="navbarDropdown">
+                                                    <a class="dropdown-item" href="#">Action</a>
+                                                    <a class="dropdown-item" href="#">Another action</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                    <div class="small mb-1">Dropdown Button Example:</div>
+                                    <div class="dropdown mb-4">
+                                        <button class="btn btn-primary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            Dropdown
+                                        </button>
+                                        <div class="dropdown-menu animated--fade-in"
+                                            aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                    <p class="mb-0 small">Note: This utility animates the CSS opacity property, meaning
+                                        it will override any existing opacity on an element being animated!</p>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
 
                 </div>
                 <!-- /.container-fluid -->
-
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link">Previous</a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
 
             </div>
             <!-- End of Main Content -->
@@ -525,13 +518,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 
