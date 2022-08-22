@@ -1,0 +1,52 @@
+[Requirements]
+
+Registration
+Done - as a user, I should be able to register a new account to the system. After a successful registration, I should be logged in automatically and redirected to the Dashboard
+
+Ticketing Section
+Done - as a user, I should be able to submit/create a new ticket. After successful ticket creation, I should be redirected to the Ticket List page and be notified that my ticket was created and the status is Pending
+Done - as a user, I should only be able to see the tickets that I created/submitted in the Ticket List page 
+Done - as an admin user, I should be able to submit/create a new ticket. After successful ticket creation, I should be redirected to the Ticket List page
+Done - as an admin user, I should be able to see all the tickets in the Ticket List page
+
+User Section
+Done - as an admin user, I should be able to see all the users
+Done - as an admin user, I should be able to create a new user
+
+Dashboard
+Done - as a user/an admin, I should be able to see the statistics in the dashboard. The Pending, In Progress, Done, and Cancelled statistics should match the count in the database
+
+Loggin out
+Done - as a user/ad admin, I should be able to log out of the system and be redirected to the login page
+
+
+[Database]
+
+Done - Design your own database, plan your tables, decide on the columns you want/need. 
+
+
+[Additional Technical Requirements]
+
+Registration, Authentication, and Authorization
+Done - the email address should be unique, only one user can register for the unique email address
+Done - the password should be encrypted when saved in the database (research simple password encryption)
+Done - if the user is already logged in, navigating to the login page should just redirect the user back to the dashboard
+Done - if the user is not logged in, the only pages that can be browsed are the login and register pages. browsing other pages will just redirect the user to the login page
+Done - if the role of the user is not admin, 
+    Done - do not show the user links in the sidebar
+    Done - browsing the user pages will redirect the user to the dashboard
+
+Environment/Configurations
+Done - create an environment or configuration file to contain the database credentials and other website configuration
+
+
+Setting
+Done - create a settings table in the database to contain pagination and website name settings
+
+Template
+Done - identify the important parts of the template as well as the parts that can be reused. Slice the web template and create small partial html sections/widgets
+
+Done - as a user, I should not be able to do any modifications to the ticket I created
+Done - as an admin and belonging to the ticket's same department, I should be able to process the ticket and update the status
+
+Done - Update Account and Department

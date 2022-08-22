@@ -51,6 +51,20 @@ class db
 
         return $newId;
     }
+    public function update($query)
+    {
+        $this->connect();
+        $result = $this->con->query($query);
+        return $result;
+
+    }
+    public function delete($query)
+    {
+        $this->connect();
+        $result = $this->con->query($query);
+        return $result;
+
+    }
 
  
 }
